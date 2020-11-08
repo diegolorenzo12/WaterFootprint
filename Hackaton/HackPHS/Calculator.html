@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="Estilo.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Water Footprint</title>
+</head>
+<body>
+
+    <header style="margin-bottom: 7%;">
+    <!-- start top-section -->
+        <div class="top-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /end top-section -->
+    <!-- start logo and navigation section -->
+        <nav class="navegacion">
+            <span class="logo"> WATER FOOTPRINT </span>
+            <a href="Home.html">HOME</a>
+            <a href="Calculator.html">CALCULATOR</a>
+            <a href="Impacts.html">IMPACTS</a>
+            <a href="Solutions.html">SOLUTIONS</a>
+        </nav>
+        <!-- end logo and navigation section -->
+    </header>
+
+
+    <div class="formulario centerPadre" id="personas_en_casa">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/house.svg" style="width: 40%;">
+            <h1>How many people live in your house?</h1>
+        </div>
+        <form id="personas" class="centerPadre">
+            <input type="range" min="1" max="15" value="1" id="rango" class="slider">
+            <p>Value: <span id="valorRango"></span></p>
+        </form>
+        <button id="boton" onclick="siguiente();">
+            Continue
+        </button>
+    </div>
+    <div class="formulario centerPadre" id="tiempo_regadera">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/shower-head.svg" style="width: 20%;">
+            <h1>Time in shower</h1>
+        </div>
+        <br><br>
+        <div class="regadera">
+            <button id="boton" onclick="regadera(10);">
+                1-10 min
+            </button>
+            <button id="boton" onclick="regadera(15);">
+                10-15 min
+            </button>
+            <button id="boton" onclick="regadera(20);">
+                over 15 min
+            </button>
+        </div>
+    </div>
+    <div class="formulario centerPadre" id="veces_regadera">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/shower-head.svg" style="width: 20%;">
+            <h1>Number of showers a week</h1>
+        </div>
+        <form id="veces" class="centerPadre">
+            <input type="range" min="1" max="28" value="1" id="rango2" class="slider">
+            <p>Value: <span id="valorRango2"></span></p>
+        </form>
+        <button class="continuar" onclick="veces();">
+            Continue
+        </button>
+    </div>
+    <div class="formulario centerPadre" id="toilet">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/toilet.svg" style="width: 20%;">
+            <h1>Do you have low-flow toilets?</h1>
+        </div>
+        <br><br><br>
+        <div>
+            <button id="boton" onclick="escusado(0)">
+                Yes
+            </button>
+            <button id="boton" onclick="escusado(1)">
+                No
+            </button>
+        </div>
+    </div>
+    <div class="formulario centerPadre" id="carro">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/Carr.svg" style="width: 40%;">
+            <h1>How do you wash your car?</h1>
+        </div>
+        <br><br><br>
+        <div style="width: 100%;">
+            <button id="boton" onclick="carro(1)">
+                Hose
+            </button>
+            <button id="boton" onclick="carro(2)">
+                Bucket
+            </button>
+            <button id="boton" onclick="carro(3)">
+                I do not have a car
+            </button>
+        </div>
+        <br><br><br><br>
+    </div>
+    <div class="formulario centerPadre" id="platos">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/dishwasher.svg" style="width: 30%;">
+            <h1>How do you wash your dishes?</h1>
+        </div>
+        <br><br><br>
+        <div style="width: 100%;">
+            <button id="boton" onclick="platos(1)">
+                By hand
+            </button>
+            <button id="boton" onclick="platos(2)">
+                Dish washer machine
+            </button>
+        </div>
+        <br><br><br><br>
+    </div>
+    <div class="formulario centerPadre" id="lavadora">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/washing-machine.svg" style="width: 28%;">
+            <h1>How do you wash your clothes?</h1>
+        </div>
+        <br><br><br>
+        <div style="width: 100%;">
+            <button id="boton" onclick="lavadora(1)">
+                By hand
+            </button>
+            <button id="boton" onclick="lavadora(2)">
+                Washing machine
+            </button>
+        </div>
+        <br><br><br><br>
+    </div>
+    <div class="formulario centerPadre" id="plantas">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/plant.svg" style="width: 40%;">
+            <h1>How do you water your plants?</h1>
+        </div>
+        <br><br><br>
+        <div style="width: 100%;">
+            <button id="boton" onclick="plant(2)">
+                Hose
+            </button>
+            <button id="boton" onclick="plant(3)">
+                I do not have a plants
+            </button>
+        </div>
+        <br><br><br><br>
+    </div>
+    <div class="formulario centerPadre" id="pool">
+        <div class="TituloPregunta centerPadre">
+            <img src="imagen/swimmer.svg" style="width: 35%;">
+            <h1>Do you a pool?</h1>
+        </div>
+        <br><br><br>
+        <div style="width: 100%;">
+            <button id="boton" onclick="pool(1);">
+                Yes
+            </button>
+            <button id="boton" onclick="pool(2);">
+                No
+            </button>
+        </div>
+        <br><br><br><br>
+    </div>
+
+    <div style="text-align: center;" id="resultado">
+        <h1>Water Footprint in square meters</h1>
+        <h2>Month: <span id="total"></span></h2>
+        <div id="d3-container" />
+    </div>
+    <br>
+    <br>
+
+    <script src="Formulario.js"></script>
+</body>
+</html>
